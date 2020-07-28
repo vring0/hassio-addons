@@ -266,10 +266,10 @@ class ScanProcessor():
             sex = USER3_SEX
         lib = Xiaomi_Scale_Body_Metrics.bodyMetrics(weight, height, age, sex, 0)
         message = '{'
-        message += '"Weight":"' + "{:.2f}".format(weight) + '"'
+        message += '"Высота":"' + "{:.2f}".format(weight) + '"'
         message += ',"BMI":"' + "{:.2f}".format(lib.getBMI()) + '"'
-        message += ',"Basal Metabolism":"' + "{:.2f}".format(lib.getBMR()) + '"'
-        message += ',"Visceral Fat":"' + "{:.2f}".format(lib.getVisceralFat()) + '"'
+        message += ',"Основной обмен веществ":"' + "{:.2f}".format(lib.getBMR()) + '"'
+        message += ',"Висцеральный жир":"' + "{:.2f}".format(lib.getVisceralFat()) + '"'
 
         if hasImpedance:
             lib = Xiaomi_Scale_Body_Metrics.bodyMetrics(weight, height, age, sex, int(miimpedance))
@@ -283,7 +283,7 @@ class ScanProcessor():
             message += ',"Телосложение":"' + str(bodyscale[lib.getBodyType()]) + '"'
             message += ',"Возраст тела":"' + "{:.0f}".format(lib.getMetabolicAge()) + '"'
 
-        message += ',"TimeStamp":"' + mitdatetime + '"'
+        message += ',"Дата и время":"' + mitdatetime + '"'
         message += '}'
         try:
             sys.stdout.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - Publishing data to topic {MQTT_PREFIX + '/' + user + '/weight'}: {message}\n")
