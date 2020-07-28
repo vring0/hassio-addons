@@ -266,24 +266,24 @@ class ScanProcessor():
             sex = USER3_SEX
         lib = Xiaomi_Scale_Body_Metrics.bodyMetrics(weight, height, age, sex, 0)
         message = '{'
-        message += '"Weight":"' + "{:.2f}".format(weight) + '"'
+        message += '"Высота":"' + "{:.2f}".format(weight) + '"'
         message += ',"BMI":"' + "{:.2f}".format(lib.getBMI()) + '"'
-        message += ',"Basal Metabolism":"' + "{:.2f}".format(lib.getBMR()) + '"'
-        message += ',"Visceral Fat":"' + "{:.2f}".format(lib.getVisceralFat()) + '"'
+        message += ',"Основной обмен веществ":"' + "{:.2f}".format(lib.getBMR()) + '"'
+        message += ',"Висцеральный жир":"' + "{:.2f}".format(lib.getVisceralFat()) + '"'
 
         if hasImpedance:
             lib = Xiaomi_Scale_Body_Metrics.bodyMetrics(weight, height, age, sex, int(miimpedance))
-            bodyscale = ['Obese', 'Overweight', 'Thick-set', 'Lack-exerscise', 'Balanced', 'Balanced-muscular', 'Skinny', 'Balanced-skinny', 'Skinny-muscular']
-            message += ',"Lean Body Mass":"' + "{:.2f}".format(lib.getLBMCoefficient()) + '"'
-            message += ',"Body Fat":"' + "{:.2f}".format(lib.getFatPercentage()) + '"'
-            message += ',"Water":"' + "{:.2f}".format(lib.getWaterPercentage()) + '"'
-            message += ',"Bone Mass":"' + "{:.2f}".format(lib.getBoneMass()) + '"'
-            message += ',"Muscle Mass":"' + "{:.2f}".format(lib.getMuscleMass()) + '"'
-            message += ',"Protein":"' + "{:.2f}".format(lib.getProteinPercentage()) + '"'
-            message += ',"Body Type":"' + str(bodyscale[lib.getBodyType()]) + '"'
-            message += ',"Metabolic Age":"' + "{:.0f}".format(lib.getMetabolicAge()) + '"'
+            bodyscale = ['Жирный', 'Толстый', 'Коренастый', 'Дряхлый', 'Сбалансированный', 'Сбалансированные-мышцы', 'Тощий', 'Сбалансированные-тощий', 'тощий-мышцы']
+            message += ',"Прогнозирование веса":"' + "{:.2f}".format(lib.getLBMCoefficient()) + '"'
+            message += ',"Жирt":"' + "{:.2f}".format(lib.getFatPercentage()) + '"'
+            message += ',"Вода":"' + "{:.2f}".format(lib.getWaterPercentage()) + '"'
+            message += ',"Костная масса":"' + "{:.2f}".format(lib.getBoneMass()) + '"'
+            message += ',"Мышцы":"' + "{:.2f}".format(lib.getMuscleMass()) + '"'
+            message += ',"Белок":"' + "{:.2f}".format(lib.getProteinPercentage()) + '"'
+            message += ',"Телосложение":"' + str(bodyscale[lib.getBodyType()]) + '"'
+            message += ',"Возраст тела":"' + "{:.0f}".format(lib.getMetabolicAge()) + '"'
 
-        message += ',"TimeStamp":"' + mitdatetime + '"'
+        message += ',"Дата и время":"' + mitdatetime + '"'
         message += '}'
         try:
             sys.stdout.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - Publishing data to topic {MQTT_PREFIX + '/' + user + '/weight'}: {message}\n")
