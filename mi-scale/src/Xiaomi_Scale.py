@@ -273,15 +273,15 @@ class ScanProcessor():
 
         if hasImpedance:
             lib = Xiaomi_Scale_Body_Metrics.bodyMetrics(weight, height, age, sex, int(miimpedance))
-            bodyscale = ['Obese', 'Overweight', 'Thick-set', 'Lack-exerscise', 'Balanced', 'Balanced-muscular', 'Skinny', 'Balanced-skinny', 'Skinny-muscular']
-            message += ',"Lean Body Mass":"' + "{:.2f}".format(lib.getLBMCoefficient()) + '"'
-            message += ',"Body Fat":"' + "{:.2f}".format(lib.getFatPercentage()) + '"'
-            message += ',"Water":"' + "{:.2f}".format(lib.getWaterPercentage()) + '"'
-            message += ',"Bone Mass":"' + "{:.2f}".format(lib.getBoneMass()) + '"'
-            message += ',"Muscle Mass":"' + "{:.2f}".format(lib.getMuscleMass()) + '"'
-            message += ',"Protein":"' + "{:.2f}".format(lib.getProteinPercentage()) + '"'
-            message += ',"Body Type":"' + str(bodyscale[lib.getBodyType()]) + '"'
-            message += ',"Metabolic Age":"' + "{:.0f}".format(lib.getMetabolicAge()) + '"'
+            bodyscale = ['Жирный', 'Толстый', 'Коренастый', 'Дряхлый', 'Сбалансированный', 'Сбалансированные-мышцы', 'Тощий', 'Сбалансированные-тощий', 'тощий-мышцы']
+            message += ',"Прогнозирование веса":"' + "{:.2f}".format(lib.getLBMCoefficient()) + '"'
+            message += ',"Жир":"' + "{:.2f}".format(lib.getFatPercentage()) + '"'
+            message += ',"Вода":"' + "{:.2f}".format(lib.getWaterPercentage()) + '"'
+            message += ',"Костная масса":"' + "{:.2f}".format(lib.getBoneMass()) + '"'
+            message += ',"Мышцы":"' + "{:.2f}".format(lib.getMuscleMass()) + '"'
+            message += ',"Белок":"' + "{:.2f}".format(lib.getProteinPercentage()) + '"'
+            message += ',"Телосложение":"' + str(bodyscale[lib.getBodyType()]) + '"'
+            message += ',"Возраст тела":"' + "{:.0f}".format(lib.getMetabolicAge()) + '"'
 
         message += ',"TimeStamp":"' + mitdatetime + '"'
         message += '}'
